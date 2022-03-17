@@ -68,6 +68,9 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'COERCE_DECIMAL_TO STRING': False
+}
 WSGI_APPLICATION = 'heroes_villians_project.wsgi.application'
 
 
