@@ -16,3 +16,11 @@ def supers_list(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
         
+@api_view(['GET'])
+def supers_detail(request, pk):
+    try:
+        supers = Super.objects.get(pk=pk)
+        serializer = SuperSerializer(supers)
+        return Response(serializer.data)
+    except Super.DoesNotExist:    
+        return Response(status=status.HTTP_404_NOT_FOUND)        
