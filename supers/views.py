@@ -12,9 +12,7 @@ def supers_list(request):
       return Response(serializer.data)
     elif request.method == 'POST':
         serializer = SuperSerializer(data=request.data)
-        if serializer.is_valid() == True:
-             serializer.save()
-             return Response(serializer.data, status=201)
-        else:
-            return Response(serializer.errors, status=400)     
-
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
